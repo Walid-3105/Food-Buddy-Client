@@ -2,9 +2,15 @@ import React, { useContext, useState } from "react";
 import NavBar from "../Shared/NavBar";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import axios from "axios";
 
 const FoodDetails = () => {
   const { user } = useContext(AuthContext);
+  const food = useLoaderData();
+  const [foods, setFoods] = useState(food);
+  const [additionalNotes, setAdditionalNotes] = useState(
+    foods.additionalNotes || ""
+  );
 
   const {
     _id,
@@ -15,10 +21,31 @@ const FoodDetails = () => {
     foodName,
     foodQuantity,
     pickupLocation,
-    additionalNotes,
     foodStatus,
     expiredDate,
-  } = useLoaderData();
+  } = foods;
+
+  // const updateStatus = {
+  //     foodStatus: "requested"
+  // }
+
+  const handleRequest = () => {
+    fetch(`http://localhost:5000/food/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ foodStatus: "requested", additionalNotes }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFoods((previousData) => ({
+          ...previousData,
+          foodStatus: "requested",
+        }));
+      });
+  };
 
   return (
     <div className="w-11/12 mx-auto">
@@ -41,14 +68,14 @@ const FoodDetails = () => {
           </p>
           <p className="text-sm text-gray-600">
             <span className="font-semibold">Pickup Location:</span>{" "}
-            {pickupLocation}
+            {pickupLocation || "Not provided"}
           </p>
           <p className="text-sm text-gray-600">
-            <span className="font-semibold">Additional Notes:</span>
+            <span className="font-semibold">Additional Notes:</span>{" "}
             {additionalNotes || "None"}
           </p>
           <p className="text-sm text-gray-600">
-            <span className="font-semibold">Food Status:</span>
+            <span className="font-semibold">Food Status:</span>{" "}
             <span
               className={`${
                 foodStatus === "available"
@@ -60,7 +87,8 @@ const FoodDetails = () => {
             </span>
           </p>
           <p className="text-sm text-gray-600">
-            <span className="font-semibold">Expires On:</span> {expiredDate}
+            <span className="font-semibold">Expires On:</span>{" "}
+            {expiredDate || "Not specified"}
           </p>
           <div className="flex items-center mt-4">
             <img
@@ -74,7 +102,6 @@ const FoodDetails = () => {
             </div>
           </div>
           <div className="card-actions justify-end mt-4">
-            {/* <button className="btn btn-primary">Request</button> */}
             <button
               className="btn"
               onClick={() => document.getElementById("my_modal_1").showModal()}
@@ -96,7 +123,7 @@ const FoodDetails = () => {
               <label className="block font-semibold">Food Name</label>
               <input
                 type="text"
-                value={foodName}
+                value={foodName || ""}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
               />
@@ -115,7 +142,7 @@ const FoodDetails = () => {
               <label className="block font-semibold">Food ID</label>
               <input
                 type="text"
-                value={_id}
+                value={_id || ""}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
               />
@@ -125,17 +152,7 @@ const FoodDetails = () => {
               <label className="block font-semibold">Donator Email</label>
               <input
                 type="email"
-                value={donatorEmail}
-                readOnly
-                className="input input-bordered w-full bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold">Donator Name</label>
-              <input
-                type="text"
-                value={donatorName}
+                value={donatorEmail || ""}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
               />
@@ -145,37 +162,7 @@ const FoodDetails = () => {
               <label className="block font-semibold">User Email</label>
               <input
                 type="email"
-                value={user?.email}
-                readOnly
-                className="input input-bordered w-full bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold">Request Date</label>
-              <input
-                type="text"
-                value={new Date().toLocaleString()}
-                readOnly
-                className="input input-bordered w-full bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold">Pickup Location</label>
-              <input
-                type="text"
-                value={pickupLocation}
-                readOnly
-                className="input input-bordered w-full bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="block font-semibold">Expire Date</label>
-              <input
-                type="text"
-                value={expiredDate}
+                value={user?.email || ""}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
               />
@@ -187,8 +174,8 @@ const FoodDetails = () => {
               <textarea
                 className="textarea textarea-bordered w-full"
                 placeholder="Add your notes here..."
-                value={additionalNotes}
-                // onChange={(e) => setAdditionalNotes(e.target.value)}
+                value={additionalNotes || ""}
+                onChange={(e) => setAdditionalNotes(e.target.value)}
               ></textarea>
             </div>
           </div>
@@ -199,12 +186,15 @@ const FoodDetails = () => {
               className="btn btn-primary"
               onClick={() => {
                 handleRequest();
-                window.my_modal_1.close();
+                document.getElementById("my_modal_1").close();
               }}
             >
               Request
             </button>
-            <button className="btn" onClick={() => window.my_modal_1.close()}>
+            <button
+              className="btn"
+              onClick={() => document.getElementById("my_modal_1").close()}
+            >
               Close
             </button>
           </div>

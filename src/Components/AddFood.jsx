@@ -134,10 +134,10 @@ const AddFood = () => {
               <input
                 type="text"
                 name="donatorName"
-                value={user?.displayName}
+                defaultValue={user?.displayName}
                 placeholder="Your name"
                 className="input input-bordered w-full"
-                required
+                readOnly
               />
             </div>
 
@@ -149,9 +149,10 @@ const AddFood = () => {
               <input
                 type="url"
                 name="donatorImage"
-                value={user?.photoURL}
+                defaultValue={user?.photoURL}
                 placeholder="Enter your image URL"
                 className="input input-bordered w-full"
+                readOnly
               />
             </div>
 
@@ -163,10 +164,10 @@ const AddFood = () => {
               <input
                 type="email"
                 name="donatorEmail"
-                value={user?.email}
+                defaultValue={user?.email}
                 placeholder="Your email"
                 className="input input-bordered w-full"
-                required
+                readOnly
               />
             </div>
 
