@@ -25,17 +25,16 @@ const FoodDetails = () => {
     expiredDate,
   } = foods;
 
-  // const updateStatus = {
-  //     foodStatus: "requested"
-  // }
-
   const handleRequest = () => {
     fetch(`http://localhost:5000/food/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ foodStatus: "requested", additionalNotes }),
+      body: JSON.stringify({
+        foodStatus: "requested",
+        additionalNotes,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -45,6 +44,31 @@ const FoodDetails = () => {
           foodStatus: "requested",
         }));
       });
+  };
+
+  const requestFood = {
+    donatorName,
+    donatorEmail,
+    donatorImage,
+    foodImage,
+    foodName,
+    foodQuantity,
+    pickupLocation,
+    foodStatus,
+    expiredDate,
+    applicant_email: user.email,
+  };
+
+  const handleRequestFood = () => {
+    fetch(`http://localhost:5000/requestFood?email=${user.email}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(requestFood),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (
@@ -186,6 +210,7 @@ const FoodDetails = () => {
               className="btn btn-primary"
               onClick={() => {
                 handleRequest();
+                handleRequestFood();
                 document.getElementById("my_modal_1").close();
               }}
             >
