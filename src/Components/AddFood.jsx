@@ -14,7 +14,7 @@ const AddFood = () => {
       foodImage: formData.get("foodImage"),
       foodQuantity: formData.get("foodQuantity"),
       pickupLocation: formData.get("pickupLocation"),
-      expiredDateTime: formData.get("expiredDateTime"),
+      expiredDate: formData.get("expiredDate"),
       additionalNotes: formData.get("additionalNotes"),
       donatorName: formData.get("donatorName"),
       donatorImage: formData.get("donatorImage"),
@@ -104,11 +104,11 @@ const AddFood = () => {
             {/* Expired Date/Time */}
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text">Expired Date/Time</span>
+                <span className="label-text">Expired Date</span>
               </label>
               <input
-                type="datetime-local"
-                name="expiredDateTime"
+                type="date"
+                name="expiredDate"
                 className="input input-bordered w-full"
                 required
               />
