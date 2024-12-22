@@ -31,10 +31,10 @@ const NavBar = () => {
       >
         Available Foods
       </NavLink>
-      <NavLink to="/allmovie" className="btn btn-outline hover:bg-sky-900">
+      <NavLink to="/manageMyFood" className="btn btn-outline hover:bg-sky-900">
         Manage My Foods
       </NavLink>
-      <NavLink to="/myFavorite" className="btn btn-outline hover:bg-sky-900">
+      <NavLink to="/myFoodRequest" className="btn btn-outline hover:bg-sky-900">
         My Food Request
       </NavLink>
       <NavLink to="/addFood" className="btn btn-outline hover:bg-sky-900">

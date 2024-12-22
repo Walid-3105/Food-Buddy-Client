@@ -33,6 +33,7 @@ const AuthProvider = ({ children }) => {
 
   // Google sign in
   const signInWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, Provider);
   };
 
@@ -42,6 +43,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (updatedData) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, updatedData);
   };
 

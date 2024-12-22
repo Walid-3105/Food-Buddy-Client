@@ -40,11 +40,7 @@ const AFoods = ({ food }) => {
             {expiredDate}
           </p>
           <div className="mt-4">
-            <Link
-              to={`/food/${_id}`}
-              className="btn btn-primary w-full"
-              //   onClick={() => Navigate(`/availableFoods/${_id}`)}
-            >
+            <Link to={`/food/${_id}`} className="btn btn-primary w-full">
               View Details
             </Link>
           </div>

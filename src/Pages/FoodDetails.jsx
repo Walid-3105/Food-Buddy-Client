@@ -3,6 +3,7 @@ import NavBar from "../Shared/NavBar";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import moment from "moment";
 
 const FoodDetails = () => {
   const { user } = useContext(AuthContext);
@@ -56,7 +57,8 @@ const FoodDetails = () => {
     pickupLocation,
     foodStatus,
     expiredDate,
-    applicant_email: user.email,
+    requestDate: moment().format("YYYY-MM-DD"),
+    email: user?.email,
   };
 
   const handleRequestFood = () => {
@@ -187,6 +189,16 @@ const FoodDetails = () => {
               <input
                 type="email"
                 value={user?.email || ""}
+                readOnly
+                className="input input-bordered w-full bg-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold">Request Date</label>
+              <input
+                type="text"
+                name="requestDate"
+                value={moment().format("YYYY-MM-DD")}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
               />
