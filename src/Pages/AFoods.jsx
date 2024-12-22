@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const AFoods = ({ food }) => {
   const {
@@ -40,12 +40,13 @@ const AFoods = ({ food }) => {
             {expiredDate}
           </p>
           <div className="mt-4">
-            <button
+            <Link
+              to={`/food/${_id}`}
               className="btn btn-primary w-full"
               //   onClick={() => Navigate(`/availableFoods/${_id}`)}
             >
               View Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>

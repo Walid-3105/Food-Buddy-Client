@@ -59,8 +59,8 @@ const AvailableFoods = () => {
         </button>
       </div>
       <div
-        className={`grid lg:${
-          layout ? "grid-cols-2" : "grid-cols-3"
+        className={`grid ${
+          layout ? "grid-cols-2" : "lg:grid-cols-3"
         } grid-cols-1 md:grid-cols-2  gap-5`}
       >
         {foods?.map((food) => (
