@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import NavBar from "../Shared/NavBar";
 import Footer from "../Shared/Footer";
-import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -13,13 +12,14 @@ const ManageMyFood = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/food?donatorEmail=${user.email}`)
+      .get(`http://localhost:5000/food?donatorEmail=${user.email}`, {
+        withCredentials: true,
+      })
       .then((data) => setMyAddedFood(data.data))
       .catch((error) => console.error(error));
   }, [user.email]);
 
   const handleDelete = (id) => {
-    // Show a custom toast with confirmation
     toast(
       (t) => (
         <div>
@@ -43,7 +43,6 @@ const ManageMyFood = () => {
                     toast.error("Failed to delete food.");
                   });
 
-                // Dismiss the confirmation toast
                 toast.dismiss(t.id);
               }}
             >
@@ -62,7 +61,6 @@ const ManageMyFood = () => {
     );
   };
 
-  // Update
   const handleUpdateFood = (food) => {
     axios
       .put(`http://localhost:5000/food/${food._id}`, food)
@@ -84,7 +82,7 @@ const ManageMyFood = () => {
   return (
     <div>
       <div className="w-11/12 mx-auto">
-        <NavBar />
+        <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto min-h-screen">
         <h2 className="text-lg font-bold my-4">

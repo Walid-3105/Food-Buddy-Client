@@ -10,6 +10,7 @@ import {
 
 import React, { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
+import axios from "axios";
 export const AuthContext = createContext();
 const Provider = new GoogleAuthProvider();
 
@@ -51,6 +52,26 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((data) => {
+            console.log(data.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post("http://localhost:5000/logout", {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("logOut token", res.data);
+            setLoading(false);
+          });
+      }
     });
 
     return () => {

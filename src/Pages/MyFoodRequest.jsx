@@ -3,15 +3,16 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Footer from "../Shared/Footer";
 import NavBar from "../Shared/NavBar";
 import axios from "axios";
-
 const MyFoodRequest = () => {
   const { user } = useContext(AuthContext);
   const [myFoods, setMyFoods] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/requestFood?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setMyFoods(data));
+    axios
+      .get(`http://localhost:5000/requestFood?email=${user.email}`, {
+        withCredentials: true,
+      })
+      .then((data) => setMyFoods(data.data));
   }, [user.email]);
 
   return (
