@@ -7,13 +7,13 @@ import axios from "axios";
 const MyFoodRequest = () => {
   const { user } = useContext(AuthContext);
   const [myFoods, setMyFoods] = useState([]);
-  console.log(user);
+
   useEffect(() => {
     fetch(`http://localhost:5000/requestFood?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyFoods(data));
   }, [user.email]);
-  console.log(myFoods);
+
   return (
     <div>
       <div className="w-11/12 mx-auto">

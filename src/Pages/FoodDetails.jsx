@@ -55,8 +55,9 @@ const FoodDetails = () => {
     foodName,
     foodQuantity,
     pickupLocation,
-    foodStatus,
+    foodStatus: "requested",
     expiredDate,
+    foodId: _id,
     requestDate: moment().format("YYYY-MM-DD"),
     email: user?.email,
   };
@@ -70,7 +71,11 @@ const FoodDetails = () => {
       body: JSON.stringify(requestFood),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+        }
+      });
   };
 
   return (
@@ -129,10 +134,16 @@ const FoodDetails = () => {
           </div>
           <div className="card-actions justify-end mt-4">
             <button
-              className="btn"
-              onClick={() => document.getElementById("my_modal_1").showModal()}
+              className={`btn ${
+                foodStatus === "requested" ? "btn-disabled" : ""
+              }`}
+              disabled={foodStatus === "requested"}
+              onClick={() =>
+                foodStatus !== "requested" &&
+                document.getElementById("my_modal_1").showModal()
+              }
             >
-              Request
+              {foodStatus === "requested" ? "Requested" : "Request"}
             </button>
           </div>
         </div>
@@ -183,6 +194,24 @@ const FoodDetails = () => {
                 className="input input-bordered w-full bg-gray-100"
               />
             </div>
+            <div>
+              <label className="block font-semibold">Donator Name</label>
+              <input
+                type="email"
+                value={donatorName || ""}
+                readOnly
+                className="input input-bordered w-full bg-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold">Pickup Location</label>
+              <input
+                type="text"
+                value={pickupLocation || ""}
+                readOnly
+                className="input input-bordered w-full bg-gray-100"
+              />
+            </div>
 
             <div>
               <label className="block font-semibold">User Email</label>
@@ -199,6 +228,16 @@ const FoodDetails = () => {
                 type="text"
                 name="requestDate"
                 value={moment().format("YYYY-MM-DD")}
+                readOnly
+                className="input input-bordered w-full bg-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold">Expire Date</label>
+              <input
+                type="text"
+                name="requestDate"
+                value={expiredDate || ""}
                 readOnly
                 className="input input-bordered w-full bg-gray-100"
               />

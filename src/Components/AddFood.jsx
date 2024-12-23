@@ -3,7 +3,6 @@ import NavBar from "../Shared/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const AddFood = () => {
-  const [foodStatus] = useState("available");
   const { user } = useContext(AuthContext);
 
   const handleFormSubmit = (e) => {
@@ -19,10 +18,9 @@ const AddFood = () => {
       donatorName: formData.get("donatorName"),
       donatorImage: formData.get("donatorImage"),
       donatorEmail: formData.get("donatorEmail"),
-      foodStatus,
+      foodStatus: formData.get("foodStatus"),
     };
 
-    console.log(foodData);
     e.target.reset();
     fetch("http://localhost:5000/food", {
       method: "POST",
@@ -37,11 +35,11 @@ const AddFood = () => {
 
   return (
     <div>
-      <div>
+      <div className="w-11/12 mx-auto">
         <NavBar></NavBar>
       </div>
       Add food here
-      <div>
+      <div className="w-11/12 mx-auto">
         <div className="w-full max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-center mb-6">Add Food</h2>
           <form onSubmit={handleFormSubmit}>
@@ -166,6 +164,18 @@ const AddFood = () => {
                 name="donatorEmail"
                 defaultValue={user?.email}
                 placeholder="Your email"
+                className="input input-bordered w-full"
+                readOnly
+              />
+            </div>
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text">Food Status</span>
+              </label>
+              <input
+                type="text"
+                name="foodStatus"
+                defaultValue={"available"}
                 className="input input-bordered w-full"
                 readOnly
               />

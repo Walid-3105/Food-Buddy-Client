@@ -16,9 +16,7 @@ const ManageMyFood = () => {
   }, [user.email]);
 
   const handleDelete = (id) => {
-    axios(`http://localhost:5000/food/${id}`, {
-      method: "DELETE",
-    }).then((data) => {
+    axios.delete(`http://localhost:5000/food/${id}`).then((data) => {
       if (data.data.deletedCount > 0) {
         axios
           .get(`http://localhost:5000/food?donatorEmail=${user.email}`)
