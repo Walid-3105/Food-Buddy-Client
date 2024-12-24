@@ -27,7 +27,7 @@ const FoodDetails = () => {
   } = foods;
 
   const handleRequest = () => {
-    fetch(`http://localhost:5000/food/${_id}`, {
+    fetch(`https://assignment-11-server-seven-sooty.vercel.app/food/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const FoodDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setFoods((previousData) => ({
           ...previousData,
           foodStatus: "requested",
@@ -63,16 +63,19 @@ const FoodDetails = () => {
   };
 
   const handleRequestFood = () => {
-    fetch(`http://localhost:5000/requestFood?email=${user.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(requestFood),
-    })
+    fetch(
+      `https://assignment-11-server-seven-sooty.vercel.app/requestFood?email=${user.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(requestFood),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount > 0) {
         }
       });

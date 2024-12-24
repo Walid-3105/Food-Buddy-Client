@@ -12,7 +12,7 @@ const AvailableFoods = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/food?foodStatus=available&search=${search}&sort=${sortOrder}`
+        `https://assignment-11-server-seven-sooty.vercel.app/food?foodStatus=available&search=${search}&sort=${sortOrder}`
       )
       .then((data) => setFoods(data.data))
       .catch((err) => console.error("Error fetching foods:", err));

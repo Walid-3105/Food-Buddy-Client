@@ -9,9 +9,12 @@ const MyFoodRequest = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/requestFood?email=${user.email}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://assignment-11-server-seven-sooty.vercel.app/requestFood?email=${user.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((data) => setMyFoods(data.data));
   }, [user.email]);
 

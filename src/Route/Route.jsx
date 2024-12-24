@@ -49,7 +49,10 @@ const router = createBrowserRouter([
         <FoodDetails></FoodDetails>
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://assignment-11-server-seven-sooty.vercel.app/food/${params.id}`
+      ),
   },
   {
     path: "/manageMyFood",

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import NavBar from "../Shared/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,7 @@ const AddFood = () => {
     };
 
     e.target.reset();
-    fetch("http://localhost:5000/food", {
+    fetch("https://assignment-11-server-seven-sooty.vercel.app/food", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -30,7 +31,10 @@ const AddFood = () => {
       body: JSON.stringify(foodData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        toast.success("Data Added Successfully");
+        // console.log(data);
+      });
   };
 
   return (

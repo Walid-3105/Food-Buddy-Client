@@ -8,14 +8,18 @@ const MFoods = ({ food }) => {
   // const [myAddedFood, setMyAddedFood] = useState([]);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/food/${id}`).then((data) => {
-      if (data.data.deletedCount > 0) {
-        axios
-          .get(`http://localhost:5000/food?donatorEmail=${user.email}`)
-          .then((data) => setFoods(data.data));
-      }
-      toast.success("Successfully Deleted");
-    });
+    axios
+      .delete(`https://assignment-11-server-seven-sooty.vercel.app/food/${id}`)
+      .then((data) => {
+        if (data.data.deletedCount > 0) {
+          axios
+            .get(
+              `https://assignment-11-server-seven-sooty.vercel.app/food?donatorEmail=${user.email}`
+            )
+            .then((data) => setFoods(data.data));
+        }
+        toast.success("Successfully Deleted");
+      });
   };
   return (
     <div>

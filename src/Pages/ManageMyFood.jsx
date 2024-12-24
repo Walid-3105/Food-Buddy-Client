@@ -12,9 +12,12 @@ const ManageMyFood = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/food?donatorEmail=${user.email}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://assignment-11-server-seven-sooty.vercel.app/food?donatorEmail=${user.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((data) => setMyAddedFood(data.data))
       .catch((error) => console.error(error));
   }, [user.email]);
@@ -29,7 +32,9 @@ const ManageMyFood = () => {
               className="btn btn-danger btn-sm"
               onClick={() => {
                 axios
-                  .delete(`http://localhost:5000/food/${id}`)
+                  .delete(
+                    `https://assignment-11-server-seven-sooty.vercel.app/food/${id}`
+                  )
                   .then((data) => {
                     if (data.data.deletedCount > 0) {
                       setMyAddedFood((prevFoods) =>
@@ -63,7 +68,10 @@ const ManageMyFood = () => {
 
   const handleUpdateFood = (food) => {
     axios
-      .put(`http://localhost:5000/food/${food._id}`, food)
+      .put(
+        `https://assignment-11-server-seven-sooty.vercel.app/food/${food._id}`,
+        food
+      )
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           setMyAddedFood((prevFoods) =>
