@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./BFoods.css";
 
 const BFoods = ({ food }) => {
   const {
@@ -19,7 +20,7 @@ const BFoods = ({ food }) => {
           <img
             src={foodImage}
             alt={foodName}
-            className="w-full h-48 object-cover rounded-t-lg"
+            className="w-full h-48 object-cover rounded-t-lg featureFood"
           />
         </figure>
         <div className="p-4">
