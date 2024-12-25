@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { CgProfile } from "react-icons/cg";
 import toast from "react-hot-toast";
 
 const NavBar = () => {

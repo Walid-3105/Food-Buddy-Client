@@ -48,6 +48,7 @@ const Register = () => {
         setError(err.message);
       });
   };
+
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -60,6 +61,7 @@ const Register = () => {
         setError(err.message);
       });
   };
+
   return (
     <div>
       <div className="w-11/12 mx-auto">

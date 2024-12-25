@@ -23,7 +23,7 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         e.target.reset();
-        console.log(result);
+        // console.log(result);
         toast.success("Successfully Log In");
         navigate(location?.state ? location.state : "/");
       })
@@ -36,7 +36,7 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         navigate(location?.state ? location.state : "/");
         e.target.reset();
       })

@@ -4,9 +4,13 @@ import FeaturedFoods from "./HomePageSection/FeaturedFoods";
 
 const HomePage = () => {
   return (
-    <div className="w-11/12 mx-auto">
-      <Banner></Banner>
-      <FeaturedFoods></FeaturedFoods>
+    <div>
+      <div>
+        <Banner></Banner>
+      </div>
+      <div className="w-11/12 mx-auto">
+        <FeaturedFoods></FeaturedFoods>
+      </div>
     </div>
   );
 };
