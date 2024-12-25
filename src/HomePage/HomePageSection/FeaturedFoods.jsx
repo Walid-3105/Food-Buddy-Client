@@ -11,7 +11,7 @@ const FeaturedFoods = () => {
     queryKey: ["foods"],
     queryFn: async () => {
       const res = await fetch(
-        "https://assignment-11-server-seven-sooty.vercel.app/food"
+        "https://assignment-11-server-beta-bay.vercel.app/food"
       );
       return res.json();
     },
@@ -35,7 +35,10 @@ const FeaturedFoods = () => {
             repeat={Infinity}
           ></TypeAnimation>
         </h3>
-        <NavLink to={"/availableFoods"} className="btn mb-4">
+        <NavLink
+          to={"/availableFoods"}
+          className="btn mb-4 bg-[#023E8A] text-white"
+        >
           Show All Food<FaArrowRight></FaArrowRight>
         </NavLink>
       </div>

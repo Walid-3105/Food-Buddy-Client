@@ -29,21 +29,21 @@ const BFoods = ({ food }) => {
             <span className="font-medium">Quantity:</span> {foodQuantity}
           </p>
           <p className="text-gray-600">
-            <span className="font-medium">Pickup Location:</span>
+            <span className="font-medium">Pickup Location: </span>
             {pickupLocation}
           </p>
           <p className="text-gray-600">
             <span className="font-medium">Donator:</span> {donatorName}
           </p>
           <p className="text-gray-600">
-            <span className="font-medium">Expired Date:</span>
+            <span className="font-medium">Expired Date: </span>
             {expiredDate}
           </p>
-          <div className="mt-4">
-            <Link to={`/food/${_id}`} className="btn btn-primary w-full">
+          {/* <div className="mt-4 ">
+            <Link to={`/food/${_id}`} className="btn bg-[#4CAF50] w-full">
               View Details
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const FoodDetails = () => {
   } = foods;
 
   const handleRequest = () => {
-    fetch(`https://assignment-11-server-seven-sooty.vercel.app/food/${_id}`, {
+    fetch(`https://assignment-11-server-beta-bay.vercel.app/food/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -64,7 +64,7 @@ const FoodDetails = () => {
 
   const handleRequestFood = () => {
     fetch(
-      `https://assignment-11-server-seven-sooty.vercel.app/requestFood?email=${user.email}`,
+      `https://assignment-11-server-beta-bay.vercel.app/requestFood?email=${user.email}`,
       {
         method: "POST",
         headers: {

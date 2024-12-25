@@ -10,6 +10,7 @@ const AFoods = ({ food }) => {
     pickupLocation,
     donatorName,
     expiredDate,
+    donatorImage,
   } = food;
 
   return (
@@ -38,10 +39,23 @@ const AFoods = ({ food }) => {
             <span className="font-medium">Expired Date:</span>
             {expiredDate}
           </p>
-          <div className="mt-4">
-            <Link to={`/food/${_id}`} className="btn btn-primary w-full">
-              View Details
-            </Link>
+          <div className="flex text-center items-center gap-1 justify-between">
+            <div className="flex text-center items-center gap-1">
+              <img
+                className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-white"
+                src={donatorImage || "https://via.placeholder.com/150"}
+                alt="User Profile"
+              />
+              <p>by {donatorName}</p>
+            </div>
+            <div className="">
+              <Link
+                to={`/food/${_id}`}
+                className="btn bg-[#023E8A] text-white w-full"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
         </div>
       </div>

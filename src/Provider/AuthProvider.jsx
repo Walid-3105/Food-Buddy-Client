@@ -55,24 +55,24 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         const user = { email: currentUser.email };
         axios
-          .post(
-            "https://assignment-11-server-seven-sooty.vercel.app/jwt",
-            user,
-            {
-              withCredentials: true,
-            }
-          )
+          .post("https://assignment-11-server-beta-bay.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
           .then((data) => {
-            // console.log(data.data);
+            console.log("LogIn Token", data.data);
             setLoading(false);
           });
       } else {
         axios
-          .post("https://assignment-11-server-seven-sooty.vercel.app/logout", {
-            withCredentials: true,
-          })
+          .post(
+            "https://assignment-11-server-beta-bay.vercel.app/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
-            // console.log("logOut token", res.data);
+            console.log("logOut token", res.data);
             setLoading(false);
           });
       }

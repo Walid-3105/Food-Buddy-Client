@@ -21,26 +21,20 @@ const NavBar = () => {
   };
   const tabs = (
     <>
-      <NavLink to="/" className="btn btn-outline hover:bg-sky-900">
+      <NavLink to="/" className="font-semibold">
         Home
       </NavLink>
-      <NavLink
-        to="/availableFoods"
-        className="btn btn-outline hover:bg-sky-900"
-      >
+      <NavLink to="/availableFoods" className="font-semibold">
         Available Foods
       </NavLink>
-      <NavLink to="/manageMyFood" className="btn btn-outline hover:bg-sky-900">
+      <NavLink to="/manageMyFood" className="font-semibold">
         Manage My Foods
       </NavLink>
-      <NavLink to="/myFoodRequest" className="btn btn-outline hover:bg-sky-900">
+      <NavLink to="/myFoodRequest" className="font-semibold">
         My Food Request
       </NavLink>
-      <NavLink to="/addFood" className="btn btn-outline hover:bg-sky-900">
+      <NavLink to="/addFood" className="font-semibold">
         Add Food
-      </NavLink>
-      <NavLink to="/contactUs" className="btn btn-outline hover:bg-sky-900">
-        Contact Us
       </NavLink>
     </>
   );
@@ -56,7 +50,7 @@ const NavBar = () => {
 
       {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">{tabs}</ul>
+        <ul className="menu menu-horizontal px-1 gap-4 text-base ho">{tabs}</ul>
       </div>
 
       {/* Navbar End */}
@@ -70,8 +64,8 @@ const NavBar = () => {
           >
             {/* Hover Effects */}
             {isHovering && (
-              <div className="absolute  p-2 w-36 rounded-md shadow-md top-10 left-0 z-10">
-                <p className="text-sm mb-1">
+              <div className="absolute  p-2 w-36 rounded-md bg-gray-400 shadow-md top-10 left-0 z-10">
+                <p className="text-sm mb-1 text-white">
                   {displayName || "Anonymous User"}
                 </p>
                 <button
@@ -95,13 +89,13 @@ const NavBar = () => {
           <div className="flex items-center gap-2">
             <NavLink
               to="/login"
-              className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white"
+              className="btn btn-sm lg:btn-md bg-[#023E8A] text-white"
             >
               Login
             </NavLink>
             <NavLink
               to="/register"
-              className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white"
+              className="btn btn-sm lg:btn-md bg-[#023E8A] text-white"
             >
               Register
             </NavLink>
@@ -144,7 +138,7 @@ const NavBar = () => {
                         );
                       });
                   }}
-                  className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white hover:bg-sky-900 rounded-xl"
+                  className="btn btn-sm lg:btn-md bg-[#023E8A] text-white hover:bg-sky-900 rounded-xl"
                 >
                   Log-Out
                 </NavLink>
@@ -152,13 +146,13 @@ const NavBar = () => {
                 <div>
                   <NavLink
                     to="/login"
-                    className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white"
+                    className="btn btn-sm lg:btn-md bg-[#023E8A] text-white"
                   >
                     Login
                   </NavLink>
                   <NavLink
                     to="/register"
-                    className="btn btn-sm lg:btn-md bg-[#0f9ccf] text-white ml-1"
+                    className="btn btn-sm lg:btn-md bg-[#023E8A] text-white ml-1"
                   >
                     Register
                   </NavLink>

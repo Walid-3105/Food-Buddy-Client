@@ -19,7 +19,7 @@
   text-align: left;
   transform: translateY(-50%);
   backdrop-filter: blur(10px);
-  background: rgba(59, 130, 246, 0.4);
+  background: #023d8a65;
   padding: 20px;
   border-radius: 8px;
   color: white;

@@ -51,7 +51,7 @@ const router = createBrowserRouter([
     ),
     loader: ({ params }) =>
       fetch(
-        `https://assignment-11-server-seven-sooty.vercel.app/food/${params.id}`
+        `https://assignment-11-server-beta-bay.vercel.app/food/${params.id}`
       ),
   },
   {

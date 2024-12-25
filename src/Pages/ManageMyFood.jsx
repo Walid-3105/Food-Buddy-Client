@@ -4,6 +4,8 @@ import Footer from "../Shared/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { FaRegEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const ManageMyFood = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +15,7 @@ const ManageMyFood = () => {
   useEffect(() => {
     axios
       .get(
-        `https://assignment-11-server-seven-sooty.vercel.app/food?donatorEmail=${user.email}`,
+        `https://assignment-11-server-beta-bay.vercel.app/food?donatorEmail=${user.email}`,
         {
           withCredentials: true,
         }
@@ -33,7 +35,7 @@ const ManageMyFood = () => {
               onClick={() => {
                 axios
                   .delete(
-                    `https://assignment-11-server-seven-sooty.vercel.app/food/${id}`
+                    `https://assignment-11-server-beta-bay.vercel.app/food/${id}`
                   )
                   .then((data) => {
                     if (data.data.deletedCount > 0) {
@@ -69,7 +71,7 @@ const ManageMyFood = () => {
   const handleUpdateFood = (food) => {
     axios
       .put(
-        `https://assignment-11-server-seven-sooty.vercel.app/food/${food._id}`,
+        `https://assignment-11-server-beta-bay.vercel.app/food/${food._id}`,
         food
       )
       .then((response) => {
@@ -86,25 +88,24 @@ const ManageMyFood = () => {
         toast.error("Failed to update food.");
       });
   };
+  console.log(myAddedFood);
 
   return (
     <div>
       <div className="w-11/12 mx-auto">
         <NavBar></NavBar>
       </div>
-      <div className="w-11/12 mx-auto min-h-screen">
-        <h2 className="text-lg font-bold my-4">
-          Manage My Food: {myAddedFood.length}
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="table">
-            <thead>
+      <div className="w-11/12 mx-auto min-h-screen mt-10">
+        <h2 className="font-semibold my-4 text-2xl">Organize My Shared Food</h2>
+        <div className="overflow-x-auto mt-10">
+          <table className="table border rounded-xl">
+            <thead className="">
               <tr>
                 <th></th>
                 <th>Food</th>
                 <th>Donator Name</th>
+                <th>DeadLine</th>
                 <th>Edit</th>
-                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -128,23 +129,22 @@ const ManageMyFood = () => {
                       </div>
                     </td>
                     <td>{food.donatorName}</td>
-                    <td>
+                    <td>{food.expiredDate}</td>
+                    <td className="flex gap-2">
                       <button
-                        className="btn btn-primary"
+                        className="hover:text-red-500"
+                        onClick={() => handleDelete(food._id)}
+                      >
+                        <RiDeleteBin6Line size={18} />
+                      </button>
+                      <button
+                        className="hover:text-green-500"
                         onClick={() => {
                           setEditingFood(food);
                           document.getElementById("my_modal_1").showModal();
                         }}
                       >
-                        Edit
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(food._id)}
-                      >
-                        Delete
+                        <FaRegEdit size={18}></FaRegEdit>
                       </button>
                     </td>
                   </tr>
@@ -219,7 +219,6 @@ const ManageMyFood = () => {
           </div>
         </div>
       </dialog>
-
       <Footer></Footer>
     </div>
   );

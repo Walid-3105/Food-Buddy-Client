@@ -9,12 +9,12 @@ const MFoods = ({ food }) => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`https://assignment-11-server-seven-sooty.vercel.app/food/${id}`)
+      .delete(`https://assignment-11-server-beta-bay.vercel.app/food/${id}`)
       .then((data) => {
         if (data.data.deletedCount > 0) {
           axios
             .get(
-              `https://assignment-11-server-seven-sooty.vercel.app/food?donatorEmail=${user.email}`
+              `https://assignment-11-server-beta-bay.vercel.app/food?donatorEmail=${user.email}`
             )
             .then((data) => setFoods(data.data));
         }

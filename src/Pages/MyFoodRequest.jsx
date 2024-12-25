@@ -10,7 +10,7 @@ const MyFoodRequest = () => {
   useEffect(() => {
     axios
       .get(
-        `https://assignment-11-server-seven-sooty.vercel.app/requestFood?email=${user.email}`,
+        `https://assignment-11-server-beta-bay.vercel.app/requestFood?email=${user.email}`,
         {
           withCredentials: true,
         }
@@ -26,7 +26,7 @@ const MyFoodRequest = () => {
 
       <div className="min-h-screen m-20">
         <div className="overflow-x-auto">
-          <table className="table">
+          <table className="table border">
             {/* head */}
             <thead>
               <tr>
