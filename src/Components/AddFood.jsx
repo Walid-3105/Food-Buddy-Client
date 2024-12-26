@@ -47,7 +47,7 @@ const AddFood = () => {
         },
       })
       .then((response) => {
-        toast.success("Data Added Successfully");
+        toast.success("Food Added Successfully");
       })
       .catch((error) => {
         console.error(error);
@@ -204,6 +204,7 @@ const AddFood = () => {
                 name="additionalNotes"
                 placeholder="Add any additional notes"
                 className="textarea textarea-bordered w-full"
+                required
               ></textarea>
             </div>
 

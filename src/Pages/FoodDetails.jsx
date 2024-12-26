@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import NavBar from "../Shared/NavBar";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const FoodDetails = () => {
   const { user } = useContext(AuthContext);
   const food = useLoaderData();
   const [foods, setFoods] = useState(food);
+  const navigate = useNavigate();
   const [additionalNotes, setAdditionalNotes] = useState(
     foods.additionalNotes || ""
   );
@@ -40,10 +42,12 @@ const FoodDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
+        toast.success("Food Requested Successfully");
         setFoods((previousData) => ({
           ...previousData,
           foodStatus: "requested",
         }));
+        navigate("/myFoodRequest");
       });
   };
 
@@ -87,12 +91,12 @@ const FoodDetails = () => {
         <NavBar></NavBar>
       </div>
 
-      <div className="card bg-base-100 shadow-xl w-96">
+      <div className="card bg-base-100 shadow-xl w-full lg:w-2/3 mx-auto mt-6">
         <figure>
           <img
             src={foodImage}
             alt={foodName}
-            className="w-full h-48 object-cover"
+            className="w-full h-80 object-cover"
           />
         </figure>
         <div className="card-body">

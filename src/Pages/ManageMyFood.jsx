@@ -22,7 +22,7 @@ const ManageMyFood = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
+  console.log(myAddedFood);
   useEffect(() => {
     axios
       .get(
@@ -195,46 +195,112 @@ const ManageMyFood = () => {
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Edit Food</h3>
+
           {editingFood && (
             <div className="grid grid-cols-1 gap-4">
-              <div>
-                <label className="block font-semibold">Food Name</label>
+              {/* Food Image */}
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">Food Image (URL)</span>
+                </label>
                 <input
-                  type="text"
-                  value={editingFood.foodName}
-                  onChange={(e) =>
-                    setEditingFood({ ...editingFood, foodName: e.target.value })
-                  }
-                  className="input input-bordered w-full"
-                />
-              </div>
-              <div>
-                <label className="block font-semibold">Pickup Location</label>
-                <input
-                  type="text"
-                  value={editingFood.pickupLocation}
+                  type="url"
+                  name="foodImage"
+                  value={editingFood.foodImage}
                   onChange={(e) =>
                     setEditingFood({
                       ...editingFood,
-                      pickupLocation: e.target.value,
+                      foodImage: e.target.value,
                     })
                   }
+                  placeholder="Enter image URL"
                   className="input input-bordered w-full"
+                  required
                 />
               </div>
-              <div>
-                <label className="block font-semibold">Food Quantity</label>
-                <input
-                  type="number"
-                  value={editingFood.foodQuantity}
+              <div className="flex gap-5">
+                {/* // Food Name */}
+                <div className="flex-1">
+                  <label className="block font-semibold">Food Name</label>
+                  <input
+                    type="text"
+                    value={editingFood.foodName}
+                    onChange={(e) =>
+                      setEditingFood({
+                        ...editingFood,
+                        foodName: e.target.value,
+                      })
+                    }
+                    className="input input-bordered w-full"
+                  />
+                </div>
+                {/* Food Quantity */}
+                <div>
+                  <label className="block font-semibold">Food Quantity</label>
+                  <input
+                    type="number"
+                    value={editingFood.foodQuantity}
+                    onChange={(e) =>
+                      setEditingFood({
+                        ...editingFood,
+                        foodQuantity: e.target.value,
+                      })
+                    }
+                    className="input input-bordered w-full"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-5">
+                {/* Pickup Location */}
+                <div className="flex-1">
+                  <label className="block font-semibold">Pickup Location</label>
+                  <input
+                    type="text"
+                    value={editingFood.pickupLocation}
+                    onChange={(e) =>
+                      setEditingFood({
+                        ...editingFood,
+                        pickupLocation: e.target.value,
+                      })
+                    }
+                    className="input input-bordered w-full"
+                  />
+                </div>
+                {/* Expired Date/Time */}
+                <div className="flex-1">
+                  <label className="block font-semibold">
+                    <span>Expired Date</span>
+                  </label>
+                  <input
+                    type="date"
+                    value={editingFood.expiredDate}
+                    onChange={(e) =>
+                      setEditingFood({
+                        ...editingFood,
+                        expiredDate: e.target.value,
+                      })
+                    }
+                    className="input input-bordered w-full"
+                    required
+                  />
+                </div>
+              </div>
+              {/* Additional Notes */}
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">Additional Notes</span>
+                </label>
+                <textarea
+                  name="additionalNotes"
+                  value={editingFood.additionalNotes}
                   onChange={(e) =>
                     setEditingFood({
                       ...editingFood,
-                      foodQuantity: e.target.value,
+                      additionalNotes: e.target.value,
                     })
                   }
-                  className="input input-bordered w-full"
-                />
+                  className="textarea textarea-bordered w-full"
+                ></textarea>
               </div>
             </div>
           )}

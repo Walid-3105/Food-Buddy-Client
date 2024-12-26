@@ -5,7 +5,7 @@ import AFoods from "./Afoods";
 import Footer from "../Shared/Footer";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
+import "./BFoods.css";
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
