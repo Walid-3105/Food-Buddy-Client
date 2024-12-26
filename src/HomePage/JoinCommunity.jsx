@@ -6,7 +6,7 @@ const JoinCommunity = () => {
     <div className="mb-10">
       <section className="bg-[#023E8A] py-20 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-semibold mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6">
             Join Our Community and Make a Difference
           </h2>
           <p className="text-lg mb-8 max-w-3xl mx-auto">

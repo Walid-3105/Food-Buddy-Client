@@ -5,8 +5,20 @@ import Loading from "../../Shared/Loading";
 import { TypeAnimation } from "react-type-animation";
 import { NavLink } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const FeaturedFoods = () => {
+  const [showSkeleton, setShowSkeleton] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const { data: foods = [], isLoading } = useQuery({
     queryKey: ["foods"],
     queryFn: async () => {
@@ -27,7 +39,7 @@ const FeaturedFoods = () => {
   return (
     <div className="my-16">
       <div>
-        <h3 className="text-3xl font-bold mb-1">
+        <h3 className="text-2xl lg:text-3xl font-bold mb-1">
           Gourmet Delights:
           <TypeAnimation
             sequence={[" A Foodie's Dream", 1000]}
@@ -42,11 +54,24 @@ const FeaturedFoods = () => {
           Show All Food<FaArrowRight></FaArrowRight>
         </NavLink>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {sortFoods &&
-          sortFoods?.map((food) => (
-            <BFoods food={food} key={food._id}></BFoods>
-          ))}
+      <div>
+        {showSkeleton ? (
+          <SkeletonTheme
+            height="30px"
+            baseColor="#4183da"
+            highlightColor="#023E8A"
+            duration={3}
+          >
+            <Skeleton count={7}></Skeleton>
+          </SkeletonTheme>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortFoods &&
+              sortFoods?.map((food) => (
+                <BFoods food={food} key={food._id}></BFoods>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

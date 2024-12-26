@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 const GoggleLogin = () => {
   const { signInWithGoogle } = useContext(AuthContext);
+  const [error, setError] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
 

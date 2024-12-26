@@ -3,12 +3,23 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../Shared/NavBar";
 import AFoods from "./Afoods";
 import Footer from "../Shared/Footer";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
   const [layout, setLayout] = useState();
   const [sortOrder, setSortOrder] = useState("asc");
+  const [showSkeleton, setShowSkeleton] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     axios
@@ -38,8 +49,8 @@ const AvailableFoods = () => {
       </div>
       <div className="w-11/12 mx-auto min-h-screen">
         <div className="flex text-center items-center justify-between">
-          <div className="text-2xl font-semibold">
-            <h3>Connecting You to Shared Meals</h3>
+          <div className="text-xl lg:text-2xl font-semibold">
+            <h3>Connect to Share Meals</h3>
           </div>
           <div className="my-4 ">
             {/* Search input */}
@@ -79,15 +90,34 @@ const AvailableFoods = () => {
             )}
           </div>
         </div>
-        <div
-          className={`grid ${
-            layout ? "grid-cols-2" : "lg:grid-cols-3"
-          } grid-cols-1 md:grid-cols-2  gap-5`}
-        >
-          {foods?.map((food) => (
-            <AFoods key={food._id} food={food}></AFoods>
-          ))}
-        </div>
+        {showSkeleton ? (
+          <SkeletonTheme
+            height="30px"
+            baseColor="#4183da"
+            highlightColor="#023E8A"
+            duration={3}
+          >
+            <Skeleton count={7}></Skeleton>
+          </SkeletonTheme>
+        ) : (
+          <div>
+            {foods.length > 0 ? (
+              <div
+                className={`grid ${
+                  layout ? "grid-cols-2" : "lg:grid-cols-3"
+                } grid-cols-1 md:grid-cols-2  gap-5`}
+              >
+                {foods?.map((food) => (
+                  <AFoods key={food._id} food={food}></AFoods>
+                ))}
+              </div>
+            ) : (
+              <div className="text-2xl md:text-3xl lg:text-3xl font-bold text-center items-center">
+                There is no Available food
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div className="">
         <Footer></Footer>

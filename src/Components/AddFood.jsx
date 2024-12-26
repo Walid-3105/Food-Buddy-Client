@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Footer from "../Shared/Footer";
+import moment from "moment";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -11,12 +12,25 @@ const AddFood = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const foodQuantity = formData.get("foodQuantity");
+    const expiredDate = formData.get("expiredDate");
+    const currentDate = moment().format("YYYY-MM-DD");
+    if (foodQuantity <= 0) {
+      toast.error("Food quantity must be greater than 0.");
+      return;
+    }
+
+    if (expiredDate < currentDate) {
+      toast.error("expiredDate must be greater than CurrentData");
+      return;
+    }
+
     const foodData = {
       foodName: formData.get("foodName"),
       foodImage: formData.get("foodImage"),
-      foodQuantity: formData.get("foodQuantity"),
+      foodQuantity: foodQuantity,
       pickupLocation: formData.get("pickupLocation"),
-      expiredDate: formData.get("expiredDate"),
+      expiredDate: expiredDate,
       additionalNotes: formData.get("additionalNotes"),
       donatorName: formData.get("donatorName"),
       donatorImage: formData.get("donatorImage"),

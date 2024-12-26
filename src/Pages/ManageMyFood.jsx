@@ -6,11 +6,22 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ManageMyFood = () => {
-  const { user } = useContext(AuthContext);
   const [myAddedFood, setMyAddedFood] = useState([]);
+  const { user } = useContext(AuthContext);
   const [editingFood, setEditingFood] = useState(null);
+  const [showSkeleton, setShowSkeleton] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     axios
@@ -22,8 +33,7 @@ const ManageMyFood = () => {
       )
       .then((data) => setMyAddedFood(data.data))
       .catch((error) => console.error(error));
-  }, [user.email]);
-  console.log(myAddedFood);
+  }, [user?.email]);
 
   const handleDelete = (id) => {
     toast(
@@ -57,7 +67,7 @@ const ManageMyFood = () => {
               Delete
             </button>
             <button
-              className="btn btn-secondary btn-sm"
+              className="btn bg-[#023E8A] text-white btn-sm"
               onClick={() => toast.dismiss(t.id)}
             >
               Cancel
@@ -89,7 +99,6 @@ const ManageMyFood = () => {
         toast.error("Failed to update food.");
       });
   };
-  console.log(myAddedFood);
 
   return (
     <div>
@@ -97,61 +106,88 @@ const ManageMyFood = () => {
         <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto min-h-screen mt-6">
-        <h2 className="font-semibold my-4 text-2xl">Organize My Shared Food</h2>
-        <div className="overflow-x-auto mt-10">
-          <table className="table border rounded-xl">
-            <thead className="">
-              <tr>
-                <th></th>
-                <th>Food</th>
-                <th>Donator Name</th>
-                <th>DeadLine</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myAddedFood &&
-                myAddedFood.map((food, index) => (
-                  <tr key={food._id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle h-12 w-12">
-                            <img src={food.foodImage} alt={food.foodName} />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="font-bold">{food.foodName}</div>
-                          <div className="text-sm opacity-50">
-                            {food.pickupLocation}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{food.donatorName}</td>
-                    <td>{food.expiredDate}</td>
-                    <td className="flex gap-2">
-                      <button
-                        className="hover:text-red-500"
-                        onClick={() => handleDelete(food._id)}
-                      >
-                        <RiDeleteBin6Line size={18} />
-                      </button>
-                      <button
-                        className="hover:text-green-500"
-                        onClick={() => {
-                          setEditingFood(food);
-                          document.getElementById("my_modal_1").showModal();
-                        }}
-                      >
-                        <FaRegEdit size={18}></FaRegEdit>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+        <h2 className="font-semibold my-4 text-xl lg:text-2xl">
+          Organize My Shared Food
+        </h2>
+        <div>
+          {showSkeleton ? (
+            <SkeletonTheme
+              height="30px"
+              baseColor="#4183da"
+              highlightColor="#023E8A"
+              duration={3}
+            >
+              <Skeleton count={7}></Skeleton>
+            </SkeletonTheme>
+          ) : (
+            <div>
+              {myAddedFood.length > 0 ? (
+                <div className="overflow-x-auto mt-10">
+                  <table className="table border rounded-xl">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Food</th>
+                        <th>Donator Name</th>
+                        <th>DeadLine</th>
+                        <th>Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {myAddedFood.map((food, index) => (
+                        <tr key={food._id}>
+                          <td>{index + 1}</td>
+                          <td>
+                            <div className="flex items-center gap-3">
+                              <div className="avatar">
+                                <div className="mask mask-squircle h-12 w-12">
+                                  <img
+                                    src={food.foodImage}
+                                    alt={food.foodName}
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <div className="font-bold">{food.foodName}</div>
+                                <div className="text-sm opacity-50">
+                                  {food.pickupLocation}
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>{food.donatorName}</td>
+                          <td>{food.expiredDate}</td>
+                          <td className="flex gap-2">
+                            <button
+                              className="hover:text-red-500"
+                              onClick={() => handleDelete(food._id)}
+                            >
+                              <RiDeleteBin6Line size={18} />
+                            </button>
+                            <button
+                              className="hover:text-green-500"
+                              onClick={() => {
+                                setEditingFood(food);
+                                document
+                                  .getElementById("my_modal_1")
+                                  .showModal();
+                              }}
+                            >
+                              <FaRegEdit size={18}></FaRegEdit>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="text-2xl md:text-3xl lg:text-3xl font-bold text-center items-center">
+                  I Don't Add Food
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -159,7 +195,6 @@ const ManageMyFood = () => {
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Edit Food</h3>
-
           {editingFood && (
             <div className="grid grid-cols-1 gap-4">
               <div>

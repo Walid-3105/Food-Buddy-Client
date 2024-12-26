@@ -7,7 +7,7 @@ const ShareFood = () => {
     <div>
       <section className="bg-gray-100 py-20">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+          <h2 className="text-2xl lg:text-3xl font-semibold text-center text-gray-800 mb-6">
             Why Food Sharing Matters
           </h2>
           <p className="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
@@ -18,7 +18,7 @@ const ShareFood = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-8">
             <div className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-1/3">
-              <h3 className="text-2xl font-medium text-gray-800 mb-4">
+              <h3 className="text-xl font-medium text-gray-800 mb-4">
                 1. Reduce Food Waste
               </h3>
               <p className="text-gray-600">
@@ -28,7 +28,7 @@ const ShareFood = () => {
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-1/3">
-              <h3 className="text-2xl font-medium text-gray-800 mb-4">
+              <h3 className="text-xl font-medium text-gray-800 mb-4">
                 2. Support Your Community
               </h3>
               <p className="text-gray-600">
@@ -37,7 +37,7 @@ const ShareFood = () => {
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-1/3">
-              <h3 className="text-2xl font-medium text-gray-800 mb-4">
+              <h3 className="text-xl font-medium text-gray-800 mb-4">
                 3. Promote Sustainability
               </h3>
               <p className="text-gray-600">
