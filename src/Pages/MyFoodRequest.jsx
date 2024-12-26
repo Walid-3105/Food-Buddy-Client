@@ -23,8 +23,10 @@ const MyFoodRequest = () => {
       <div className="w-11/12 mx-auto">
         <NavBar></NavBar>
       </div>
-
-      <div className="min-h-screen m-20">
+      <h3 className="text-2xl font-semibold w-11/12 mx-auto mb-4 mt-5">
+        Your Food Requests
+      </h3>
+      <div className="w-11/12 mx-auto min-h-screen mt-10">
         <div className="overflow-x-auto">
           <table className="table border">
             {/* head */}

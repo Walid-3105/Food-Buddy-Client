@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Provider/AuthProvider";
 import NavBar from "../../Shared/NavBar";
+import Logo from "../../Shared/Logo";
+import GoggleLogin from "../../Shared/GoggleLogin";
+import WelcomeBanner from "../../Shared/WelcomeBanner";
 
 const Login = () => {
   const { userLogin, signInWithGoogle, updateEmail } = useContext(AuthContext);
@@ -33,33 +36,31 @@ const Login = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        // console.log(result.user);
-        navigate(location?.state ? location.state : "/");
-        e.target.reset();
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
-  };
-
   return (
     <div>
-      <div>
-        <NavBar></NavBar>
-      </div>
-      <div>
-        <div className="w-full flex justify-center items-center py-14">
-          <div className="card w-full max-w-xs md:max-w-sm lg:max-w-lg shrink-0 p-10 bg-gradient-to-r from-orange-100 via-gray-100 to-blue-300 text-gray-800">
-            <h2 className="text-2xl font-semibold text-center">
-              Login Your Account
-            </h2>
-            <form onSubmit={handleLogin} className="card-body pb-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full flex justify-center items-center">
+          <div className="card w-full md:max-w-[380px] lg:max-w-[440px] p-10 mt-6">
+            <div className="mb-10">
+              <Logo></Logo>
+            </div>
+            <div className="flex gap-2 text-center items-center font-semibold mb-4">
+              <FaArrowLeft />
+              <Link to="/">Home</Link>
+            </div>
+            <h2 className="text-2xl font-bold text-left">Log In</h2>
+            <p className="text-left font-semibold mb-2">
+              Do not have a Account ?
+              <Link to="/register" className="text-[#023E8A] pl-1">
+                Register
+              </Link>
+            </p>
+            <form onSubmit={handleLogin} className="pb-3">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-gray-700 font-semibold">
+                    Email
+                  </span>
                 </label>
                 <input
                   name="email"
@@ -69,9 +70,11 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className="form-control relative">
+              <div className="form-control relative ">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-gray-700 font-semibold">
+                    Password
+                  </span>
                 </label>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -88,7 +91,7 @@ const Login = () => {
                   {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
                 </button>
 
-                <label className="label">
+                <label className="label text-gray-700 font-semibold">
                   <Link
                     to="/auth/forgetPassword"
                     className="label-text-alt link link-hover"
@@ -101,34 +104,17 @@ const Login = () => {
                 <label className="label text-red-600">{error.login}</label>
               )}
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn bg-[#023E8A] text-white">Login</button>
               </div>
             </form>
-            <div className="px-8 ">
-              <div className="flex items-center justify-center my-2 ">
-                <div className="border-t border-gray-300 flex-grow"></div>
-                <span className="px-4 text-gray-600">Or Sign In With</span>
-                <div className="border-t border-gray-300 flex-grow"></div>
-              </div>
-
-              <div className="flex items-center justify-center pb-1">
-                <button
-                  onClick={handleGoogleSignIn}
-                  className="flex text-center items-center btn text-xl border-gray-400 rounded-lg"
-                >
-                  <FcGoogle></FcGoogle>
-                  Google
-                </button>
-              </div>
+            {/* Goggle */}
+            <div>
+              <GoggleLogin></GoggleLogin>
             </div>
-
-            <p className="text-center font-semibold">
-              Do not have a Account ?
-              <Link to="/register" className="text-red-600 pl-1">
-                Register
-              </Link>
-            </p>
           </div>
+        </div>
+        <div className="col-span-2">
+          <WelcomeBanner></WelcomeBanner>
         </div>
       </div>
     </div>

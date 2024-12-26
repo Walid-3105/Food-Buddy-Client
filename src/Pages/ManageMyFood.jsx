@@ -15,7 +15,7 @@ const ManageMyFood = () => {
   useEffect(() => {
     axios
       .get(
-        `https://assignment-11-server-beta-bay.vercel.app/food?donatorEmail=${user.email}`,
+        `https://assignment-11-server-beta-bay.vercel.app/my-food?donatorEmail=${user.email}`,
         {
           withCredentials: true,
         }
@@ -23,6 +23,7 @@ const ManageMyFood = () => {
       .then((data) => setMyAddedFood(data.data))
       .catch((error) => console.error(error));
   }, [user.email]);
+  console.log(myAddedFood);
 
   const handleDelete = (id) => {
     toast(
@@ -95,7 +96,7 @@ const ManageMyFood = () => {
       <div className="w-11/12 mx-auto">
         <NavBar></NavBar>
       </div>
-      <div className="w-11/12 mx-auto min-h-screen mt-10">
+      <div className="w-11/12 mx-auto min-h-screen mt-6">
         <h2 className="font-semibold my-4 text-2xl">Organize My Shared Food</h2>
         <div className="overflow-x-auto mt-10">
           <table className="table border rounded-xl">

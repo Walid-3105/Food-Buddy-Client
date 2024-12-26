@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import Logo from "./Logo";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -21,19 +22,19 @@ const NavBar = () => {
   };
   const tabs = (
     <>
-      <NavLink to="/" className="font-semibold">
+      <NavLink to="/" className="font-semibold nav">
         Home
       </NavLink>
-      <NavLink to="/availableFoods" className="font-semibold">
+      <NavLink to="/availableFoods" className="font-semibold nav">
         Available Foods
       </NavLink>
-      <NavLink to="/manageMyFood" className="font-semibold">
+      <NavLink to="/manageMyFood" className="font-semibold nav">
         Manage My Foods
       </NavLink>
-      <NavLink to="/myFoodRequest" className="font-semibold">
+      <NavLink to="/myFoodRequest" className="font-semibold nav">
         My Food Request
       </NavLink>
-      <NavLink to="/addFood" className="font-semibold">
+      <NavLink to="/addFood" className="font-semibold nav">
         Add Food
       </NavLink>
     </>
@@ -43,9 +44,7 @@ const NavBar = () => {
     <div className="navbar">
       {/* Navbar Start */}
       <div className="navbar-start">
-        <h3 className="text-sm lg:text-xl flex text-center items-center font-bold">
-          FoodBuddy
-        </h3>
+        <Logo></Logo>
       </div>
 
       {/* Navbar Center */}

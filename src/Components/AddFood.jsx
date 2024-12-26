@@ -3,6 +3,7 @@ import NavBar from "../Shared/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Footer from "../Shared/Footer";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -24,17 +25,20 @@ const AddFood = () => {
     };
 
     e.target.reset();
-    axios("https://assignment-11-server-beta-bay.vercel.app/food", {
-      withCredentials: true,
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(foodData),
-    }).then((data) => {
-      toast.success("Data Added Successfully");
-      // console.log(data);
-    });
+    axios
+      .post("https://assignment-11-server-beta-bay.vercel.app/food", foodData, {
+        withCredentials: true,
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+      .then((response) => {
+        toast.success("Data Added Successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Failed to Add Data");
+      });
   };
 
   return (
@@ -42,25 +46,10 @@ const AddFood = () => {
       <div className="w-11/12 mx-auto">
         <NavBar></NavBar>
       </div>
-      Add food here
       <div className="w-11/12 mx-auto">
         <div className="w-full max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-center mb-6">Add Food</h2>
           <form onSubmit={handleFormSubmit}>
-            {/* Food Name */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Food Name</span>
-              </label>
-              <input
-                type="text"
-                name="foodName"
-                placeholder="Enter food name"
-                className="input input-bordered w-full"
-                required
-              />
-            </div>
-
             {/* Food Image */}
             <div className="form-control mb-4">
               <label className="label">
@@ -74,46 +63,122 @@ const AddFood = () => {
                 required
               />
             </div>
+            <div className="flex gap-5">
+              {/* Food Name */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Food Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="foodName"
+                  placeholder="Enter food name"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
 
-            {/* Food Quantity */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Food Quantity</span>
-              </label>
-              <input
-                type="number"
-                name="foodQuantity"
-                placeholder="Enter quantity"
-                className="input input-bordered w-full"
-                required
-              />
+              {/* Food Quantity */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Food Quantity</span>
+                </label>
+                <input
+                  type="number"
+                  name="foodQuantity"
+                  placeholder="Enter quantity"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
             </div>
 
-            {/* Pickup Location */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Pickup Location</span>
-              </label>
-              <input
-                type="text"
-                name="pickupLocation"
-                placeholder="Enter pickup location"
-                className="input input-bordered w-full"
-                required
-              />
-            </div>
+            <div className="flex gap-5">
+              {/* Pickup Location */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Pickup Location</span>
+                </label>
+                <input
+                  type="text"
+                  name="pickupLocation"
+                  placeholder="Enter pickup location"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
 
-            {/* Expired Date/Time */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Expired Date</span>
-              </label>
-              <input
-                type="date"
-                name="expiredDate"
-                className="input input-bordered w-full"
-                required
-              />
+              {/* Expired Date/Time */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Expired Date</span>
+                </label>
+                <input
+                  type="date"
+                  name="expiredDate"
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex gap-5">
+              {/* Donator Name */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Donator Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="donatorName"
+                  defaultValue={user?.displayName}
+                  placeholder="Your name"
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
+              {/* Donator Email */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Donator Email</span>
+                </label>
+                <input
+                  type="email"
+                  name="donatorEmail"
+                  defaultValue={user?.email}
+                  placeholder="Your email"
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
+            </div>
+            <div className="flex gap-5">
+              {/* Donator Image */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Donator Image (URL)</span>
+                </label>
+                <input
+                  type="url"
+                  name="donatorImage"
+                  defaultValue={user?.photoURL}
+                  placeholder="Enter your image URL"
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
+              {/* Food Status */}
+              <div className="form-control mb-4 flex-1">
+                <label className="label">
+                  <span className="label-text">Food Status</span>
+                </label>
+                <input
+                  type="text"
+                  name="foodStatus"
+                  defaultValue={"available"}
+                  className="input input-bordered w-full"
+                  readOnly
+                />
+              </div>
             </div>
 
             {/* Additional Notes */}
@@ -128,71 +193,20 @@ const AddFood = () => {
               ></textarea>
             </div>
 
-            {/* Donator Name */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Donator Name</span>
-              </label>
-              <input
-                type="text"
-                name="donatorName"
-                defaultValue={user?.displayName}
-                placeholder="Your name"
-                className="input input-bordered w-full"
-                readOnly
-              />
-            </div>
-
-            {/* Donator Image */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Donator Image (URL)</span>
-              </label>
-              <input
-                type="url"
-                name="donatorImage"
-                defaultValue={user?.photoURL}
-                placeholder="Enter your image URL"
-                className="input input-bordered w-full"
-                readOnly
-              />
-            </div>
-
-            {/* Donator Email */}
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Donator Email</span>
-              </label>
-              <input
-                type="email"
-                name="donatorEmail"
-                defaultValue={user?.email}
-                placeholder="Your email"
-                className="input input-bordered w-full"
-                readOnly
-              />
-            </div>
-            <div className="form-control mb-4">
-              <label className="label">
-                <span className="label-text">Food Status</span>
-              </label>
-              <input
-                type="text"
-                name="foodStatus"
-                defaultValue={"available"}
-                className="input input-bordered w-full"
-                readOnly
-              />
-            </div>
-
             {/* Submit Button */}
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-primary w-full">
+              <button
+                type="submit"
+                className="btn bg-[#023E8A] text-white w-full"
+              >
                 Add Food
               </button>
             </div>
           </form>
         </div>
+      </div>
+      <div>
+        <Footer></Footer>
       </div>
     </div>
   );
