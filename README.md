@@ -5,6 +5,7 @@ FoodBuddy is a Community Food Sharing and Surplus Reduction Platform designed to
 ## Live URL
 
 [FoodBuddy Live Site](https://assignment-11-a70b0.web.app/)
+<br/>
 [FoodBuddy Live Site-2](https://assignment-11-a70b0.firebaseapp.com/)
 
 ---
