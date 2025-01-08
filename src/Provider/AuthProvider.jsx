@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then((data) => {
-            console.log("LogIn Token", data.data);
+            // console.log("LogIn Token", data.data);
             setLoading(false);
           });
       } else {
@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
             }
           )
           .then((res) => {
-            console.log("logOut token", res.data);
+            // console.log("logOut token", res.data);
             setLoading(false);
           });
       }

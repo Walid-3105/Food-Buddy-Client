@@ -21,7 +21,7 @@ const AFoods = ({ food }) => {
           <img
             src={foodImage}
             alt={foodName}
-            className="w-full h-48 object-cover rounded-t-lg featureFood"
+            className="w-full h-48 object-cover rounded-t-lg "
           />
         </figure>
         <div className="p-4">

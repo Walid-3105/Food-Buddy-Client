@@ -137,7 +137,7 @@ const NavBar = () => {
                         );
                       });
                   }}
-                  className="btn btn-sm lg:btn-md bg-[#023E8A] text-white hover:bg-sky-900 rounded-xl"
+                  className="btn btn-sm lg:btn-md  text-white hover:bg-sky-200 rounded-xl"
                 >
                   Log-Out
                 </NavLink>

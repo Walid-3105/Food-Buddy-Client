@@ -5,7 +5,7 @@ import AFoods from "./Afoods";
 import Footer from "../Shared/Footer";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import "./BFoods.css";
+
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
@@ -48,7 +48,7 @@ const AvailableFoods = () => {
         <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto min-h-screen">
-        <div className="flex text-center items-center justify-between">
+        <div className="lg:flex grid grid-cols-1  items-center justify-between">
           <div className="text-xl lg:text-2xl font-semibold">
             <h3>Connect to Share Meals</h3>
           </div>
@@ -59,7 +59,7 @@ const AvailableFoods = () => {
               value={search}
               onChange={handleSearchChange}
               placeholder="Search by food name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-60 lg:w-full"
             />
           </div>
         </div>
