@@ -95,5 +95,5 @@ FoodBuddy is a Community Food Sharing and Surplus Reduction Platform designed to
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/Walid-3105/Food-Buddy-Client.git
    ```
