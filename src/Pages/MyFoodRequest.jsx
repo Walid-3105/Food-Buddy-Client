@@ -32,10 +32,10 @@ const MyFoodRequest = () => {
 
   return (
     <div>
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto mt-16 pb-6">
         <NavBar></NavBar>
       </div>
-      <h3 className="text-2xl font-semibold w-11/12 mx-auto mb-4 mt-5">
+      <h3 className="text-2xl font-semibold w-11/12 mx-auto mb-4">
         Your Food Requests
       </h3>
       <div className="w-11/12 mx-auto">
@@ -49,13 +49,13 @@ const MyFoodRequest = () => {
             <Skeleton count={7}></Skeleton>
           </SkeletonTheme>
         ) : (
-          <div className="w-11/12 mx-auto min-h-screen mt-10">
+          <div className="min-h-screen mt-10">
             {myFoods.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table border">
                   {/* head */}
                   <thead>
-                    <tr>
+                    <tr className="text-gray-500">
                       <th></th>
                       <th>Food</th>
                       <th>Donator Name</th>

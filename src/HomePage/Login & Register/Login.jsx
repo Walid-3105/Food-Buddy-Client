@@ -44,9 +44,11 @@ const Login = () => {
             <div className="mb-10">
               <Logo></Logo>
             </div>
-            <div className="flex gap-2 text-center items-center font-semibold mb-4">
-              <FaArrowLeft />
-              <Link to="/">Home</Link>
+            <div className=" font-semibold mb-4">
+              <Link to="/" className="flex gap-2 text-center items-center">
+                <FaArrowLeft />
+                Home
+              </Link>
             </div>
             <h2 className="text-2xl font-bold text-left">Log In</h2>
             <p className="text-left font-semibold mb-2">

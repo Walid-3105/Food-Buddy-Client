@@ -1,0 +1,27 @@
+.dark-mode {
+  background-color: rgb(24, 24, 24);
+  color: white;
+}
+.navbar {
+  background-color: white;
+}
+.dark-mode .navbar {
+  background-color: rgb(24, 24, 24);
+  backdrop-filter: blur(10px);
+}
+
+.cart {
+  color: #1f2937;
+}
+
+.share {
+  color: #4b5563;
+}
+
+.dark-mode .share {
+  color: white;
+}
+
+.dark-mode .cart {
+  color: white;
+}

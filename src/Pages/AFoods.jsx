@@ -16,7 +16,7 @@ const AFoods = ({ food }) => {
 
   return (
     <div>
-      <div className="card w-full bg-base-100 shadow-lg rounded-lg">
+      <div className="card w-full shadow-xl shadow-slate-500 rounded-lg">
         <figure>
           <img
             src={foodImage}
@@ -26,33 +26,33 @@ const AFoods = ({ food }) => {
         </figure>
         <div className="p-4">
           <h2 className="text-lg font-bold mb-2">{foodName}</h2>
-          <p className="text-gray-600">
-            <span className="font-medium">Quantity:</span> {foodQuantity}
+          <p className="">
+            <span className="font-medium">Quantity: </span> {foodQuantity} gm
           </p>
-          <p className="text-gray-600">
-            <span className="font-medium">Pickup Location:</span>
+          <p className="">
+            <span className="font-medium">Pickup Location: </span>
             {pickupLocation}
           </p>
-          <p className="text-gray-600">
-            <span className="font-medium">Donator:</span> {donatorName}
+          <p className="">
+            <span className="font-medium">Donator: </span> {donatorName}
           </p>
-          <p className="text-gray-600">
-            <span className="font-medium">Expired Date:</span>
+          <p className="">
+            <span className="font-medium">Expired Date: </span>
             {expiredDate}
           </p>
-          <div className="flex text-center items-center gap-1 justify-between">
-            <div className="flex text-center items-center gap-1">
+          <div className="flex text-center items-center justify-center">
+            {/* <div className="flex text-center items-center gap-1">
               <img
                 className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-white"
                 src={donatorImage || "https://via.placeholder.com/150"}
                 alt="User Profile"
               />
-              <p>by {donatorName}</p>
-            </div>
-            <div className="">
+              <p className="text-sm">by {donatorName}</p>
+            </div> */}
+            <div className="mt-2">
               <Link
                 to={`/food/${_id}`}
-                className="btn bg-[#023E8A] text-white w-full"
+                className="btn btn-sm bg-[#023E8A] text-white w-full"
               >
                 View Details
               </Link>

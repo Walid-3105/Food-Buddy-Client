@@ -9,7 +9,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
-  const [layout, setLayout] = useState();
+  // const [layout, setLayout] = useState();
   const [sortOrder, setSortOrder] = useState("asc");
   const [showSkeleton, setShowSkeleton] = useState(true);
 
@@ -38,13 +38,13 @@ const AvailableFoods = () => {
     setSortOrder(order);
   };
 
-  const handleGridColumn = () => {
-    setLayout(!layout);
-  };
+  // const handleGridColumn = () => {
+  //   setLayout(!layout);
+  // };
 
   return (
     <div>
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto mt-16">
         <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto min-h-screen">
@@ -59,30 +59,30 @@ const AvailableFoods = () => {
               value={search}
               onChange={handleSearchChange}
               placeholder="Search by food name"
-              className="input input-bordered w-60 lg:w-full"
+              className="input dark:text-black input-bordered w-60 lg:w-full"
             />
           </div>
         </div>
         <div className="flex gap-2 mb-4">
-          <div>
+          {/* <div>
             <button
               className="btn bg-[#023E8A] text-white"
               onClick={handleGridColumn}
             >
               Change Layout
             </button>
-          </div>
+          </div> */}
           <div>
             {sortOrder === "asc" ? (
               <button
-                className="btn bg-[#023E8A] text-white"
+                className="btn btn-sm bg-[#023E8A] text-white"
                 onClick={() => handleSortChange("desc")}
               >
                 Descending Order
               </button>
             ) : (
               <button
-                className="btn bg-[#023E8A] text-white"
+                className="btn btn-sm bg-[#023E8A] text-white"
                 onClick={() => handleSortChange("asc")}
               >
                 Ascending Order
@@ -103,9 +103,8 @@ const AvailableFoods = () => {
           <div>
             {foods.length > 0 ? (
               <div
-                className={`grid ${
-                  layout ? "grid-cols-2" : "lg:grid-cols-3"
-                } grid-cols-1 md:grid-cols-2  gap-5`}
+                className="grid
+                 md:grid-cols-3 lg:grid-cols-4 gap-5"
               >
                 {foods?.map((food) => (
                   <AFoods key={food._id} food={food}></AFoods>

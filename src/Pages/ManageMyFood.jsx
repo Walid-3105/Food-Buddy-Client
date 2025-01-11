@@ -22,7 +22,7 @@ const ManageMyFood = () => {
 
     return () => clearTimeout(timer);
   }, []);
-  console.log(myAddedFood);
+
   useEffect(() => {
     axios
       .get(
@@ -32,7 +32,9 @@ const ManageMyFood = () => {
         }
       )
       .then((data) => setMyAddedFood(data.data))
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        toast.error("Error");
+      });
   }, [user?.email]);
 
   const handleDelete = (id) => {
@@ -102,7 +104,7 @@ const ManageMyFood = () => {
 
   return (
     <div>
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto mt-16 pb-2">
         <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto min-h-screen mt-6">
@@ -125,7 +127,7 @@ const ManageMyFood = () => {
                 <div className="overflow-x-auto mt-10">
                   <table className="table border rounded-xl">
                     <thead>
-                      <tr>
+                      <tr className="text-gray-500">
                         <th></th>
                         <th>Food</th>
                         <th>Donator Name</th>
@@ -193,7 +195,7 @@ const ManageMyFood = () => {
 
       {/* Modal for editing */}
       <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
+        <div className="modal-box text-black">
           <h3 className="font-bold text-lg">Edit Food</h3>
 
           {editingFood && (

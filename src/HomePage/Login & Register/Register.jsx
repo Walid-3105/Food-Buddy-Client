@@ -29,7 +29,8 @@ const Register = () => {
       setError("Password should be 6 character");
       return;
     }
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    const passwordRegex =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
 
     if (!passwordRegex.test(password)) {
       setError("At least one Uppercase-Lowercase and number");
@@ -59,9 +60,11 @@ const Register = () => {
             <div className="mb-10">
               <Logo></Logo>
             </div>
-            <div className="flex gap-2 text-center items-center font-semibold mb-4">
-              <FaArrowLeft />
-              <Link to="/">Home</Link>
+            <div className="font-semibold mb-4">
+              <Link to="/" className="flex gap-2 text-center items-center">
+                <FaArrowLeft />
+                Home
+              </Link>
             </div>
             <h2 className="text-2xl font-bold text-left">Register</h2>
             <p className="text-left font-semibold mb-2">

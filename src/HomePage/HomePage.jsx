@@ -3,6 +3,8 @@ import Banner from "./HomePageSection/Banner";
 import FeaturedFoods from "./HomePageSection/FeaturedFoods";
 import ShareFood from "./ShareFood";
 import JoinCommunity from "./JoinCommunity";
+import OurMission from "../Pages/HowItWorks";
+import HowItWorks from "../Pages/HowItWorks";
 
 const HomePage = () => {
   return (
@@ -15,6 +17,9 @@ const HomePage = () => {
       </div>
       <div>
         <ShareFood></ShareFood>
+      </div>
+      <div>
+        <HowItWorks></HowItWorks>
       </div>
       <div>
         <JoinCommunity></JoinCommunity>

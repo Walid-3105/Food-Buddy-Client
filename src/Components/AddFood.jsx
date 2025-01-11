@@ -57,12 +57,14 @@ const AddFood = () => {
 
   return (
     <div>
-      <div className="w-11/12 mx-auto">
+      <div className="w-11/12 mx-auto mt-16">
         <NavBar></NavBar>
       </div>
       <div className="w-11/12 mx-auto">
-        <div className="w-full max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold text-center mb-6">Add Food</h2>
+        <div className="w-full text-black max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold text-center mb-6 text-black">
+            Add Food
+          </h2>
           <form onSubmit={handleFormSubmit}>
             {/* Food Image */}
             <div className="form-control mb-4">

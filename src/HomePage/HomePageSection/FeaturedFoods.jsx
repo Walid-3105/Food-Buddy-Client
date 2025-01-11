@@ -30,7 +30,7 @@ const FeaturedFoods = () => {
   });
 
   const sortFoods = Array.isArray(foods)
-    ? foods.sort((a, b) => b.foodQuantity - a.foodQuantity).slice(0, 6)
+    ? foods.sort((a, b) => b.foodQuantity - a.foodQuantity).slice(0, 8)
     : [];
 
   if (isLoading) {
@@ -65,7 +65,7 @@ const FeaturedFoods = () => {
             <Skeleton count={7}></Skeleton>
           </SkeletonTheme>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {sortFoods &&
               sortFoods?.map((food) => (
                 <BFoods food={food} key={food._id}></BFoods>

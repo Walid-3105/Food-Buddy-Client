@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const JoinCommunity = () => {
   return (
-    <div className="mb-10">
+    <div className="my-16">
       <section className="bg-[#023E8A] py-20 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6">

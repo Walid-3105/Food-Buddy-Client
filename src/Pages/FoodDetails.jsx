@@ -86,12 +86,12 @@ const FoodDetails = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto mt-16">
       <div>
         <NavBar></NavBar>
       </div>
 
-      <div className="card bg-base-100 shadow-xl w-full lg:w-2/3 mx-auto mt-6">
+      <div className="text-black card bg-base-100 shadow-xl w-full lg:w-2/3 mx-auto mt-6">
         <figure>
           <img
             src={foodImage}

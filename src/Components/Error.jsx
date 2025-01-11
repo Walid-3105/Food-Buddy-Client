@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import error from "../../src/assets/error.png";
+import error from "../../src/assets/error2.png";
 const Error = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-100 via-blue-200 to-gray-300 text-gray-800">
       <div className="text-center space-y-6">
         <p className="text-2xl font-semibold">Oops! Page Not Found</p>
         <div className="flex items-center justify-center ">
-          <img className="w-72 rounded-lg" src={error} alt="" />
+          <img className="w-80 rounded-lg" src={error} alt="" />
         </div>
         <p className="text-gray-600 mb-6">
           The page you're looking for doesn't exist or has been moved.

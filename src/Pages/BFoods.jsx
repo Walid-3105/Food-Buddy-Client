@@ -15,7 +15,7 @@ const BFoods = ({ food }) => {
 
   return (
     <div>
-      <div className="card w-full bg-base-100 shadow-lg rounded-lg">
+      <div className="card w-full shadow-xl shadow-slate-500 rounded-lg">
         <figure>
           <img
             src={foodImage}
@@ -25,17 +25,17 @@ const BFoods = ({ food }) => {
         </figure>
         <div className="p-4">
           <h2 className="text-lg font-bold mb-2">{foodName}</h2>
-          <p className="text-gray-600">
-            <span className="font-medium">Quantity:</span> {foodQuantity}
+          <p className="">
+            <span className="font-medium">Quantity:</span> {foodQuantity} gm
           </p>
-          <p className="text-gray-600">
+          <p className="">
             <span className="font-medium">Pickup Location: </span>
             {pickupLocation}
           </p>
-          <p className="text-gray-600">
+          <p className="">
             <span className="font-medium">Donator:</span> {donatorName}
           </p>
-          <p className="text-gray-600">
+          <p className="">
             <span className="font-medium">Expired Date: </span>
             {expiredDate}
           </p>
