@@ -2,10 +2,10 @@ import React from "react";
 
 const HowItWorks = () => {
   return (
-    <section className="shadow-xl  py-16 px-6 md:px-12 lg:px-20 mt-16">
+    <section className="shadow-xl py-16 px-6 md:px-12 lg:px-20 mt-16">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-extrabold mb-8">How It Works</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Step 1 */}
           <div className=" p-8 rounded-lg shadow-xl shadow-slate-400">
             <h3 className="text-2xl font-semibold  mb-4">Step 1: Donate</h3>

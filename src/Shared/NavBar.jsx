@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Logo from "./Logo";
 import { Helmet } from "react-helmet";
 import "./NavBar.css";
+import { CgProfile } from "react-icons/cg";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -30,23 +31,21 @@ const NavBar = () => {
       <NavLink to="/availableFoods" className="font-semibold nav">
         Available Foods
       </NavLink>
-      <div>
-        {user && user?.email ? (
-          <div className="flex gap-3">
-            <NavLink to="/manageMyFood" className="font-semibold nav">
-              Manage My Foods
-            </NavLink>
-            <NavLink to="/myFoodRequest" className="font-semibold nav">
-              My Food Request
-            </NavLink>
-            <NavLink to="/addFood" className="font-semibold nav">
-              Add Food
-            </NavLink>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
+      {user && user?.email ? (
+        <div className="flex flex-col lg:flex-row gap-0 lg:gap-3">
+          <NavLink to="/manageMyFood" className="font-semibold nav">
+            Manage My Foods
+          </NavLink>
+          <NavLink to="/myFoodRequest" className="font-semibold nav">
+            My Food Request
+          </NavLink>
+          <NavLink to="/addFood" className="font-semibold nav">
+            Add Food
+          </NavLink>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 
@@ -66,7 +65,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar fixed z-10 top-0 right-0 px-12 ">
+    <div className="navbar fixed z-10 top-0 right-0 px-6 md:pl-10 lg:px-12 ">
       {/* Navbar Start */}
       <Helmet>
         <title>{getPageTitle()}</title>
@@ -113,20 +112,7 @@ const NavBar = () => {
           </div>
         ) : (
           // Login/Register Links
-          <div className="flex items-center gap-2">
-            <NavLink
-              to="/login"
-              className="btn btn-sm  bg-[#023E8A] text-white"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              className="btn btn-sm  bg-[#023E8A] text-white"
-            >
-              Register
-            </NavLink>
-          </div>
+          <CgProfile size={25} />
         )}
 
         {/* Theme Toggle */}
@@ -173,7 +159,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content  rounded-box z-[1] mt-3 w-52 p-2 right-0 bg-gray-400 "
+            className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 right-0 bg-gray-400 "
           >
             {tabs}
             <div className="mt-2">
