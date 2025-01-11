@@ -29,6 +29,7 @@ const navLinks = [
 ];
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <div className="px-5 md:px-44 lg:px-52 mt-8 border-t-2">
       <div className="pt-6 lg:pt-8 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-7">
@@ -36,7 +37,7 @@ const Footer = () => {
           <div>
             <Logo></Logo>
             <p className="text-sm text-gray-500 font-medium mt-3">
-              @ 2023 FoodBuddy.dev
+              @ {currentYear} FoodBuddy.dev
             </p>
           </div>
         </div>
@@ -69,7 +70,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-sm font-medium text-center cart mt-5 pb-6 lg:pt-8 lg:pb-8">
-        © theFoodBuddy. 2024, Bangladesh. All rights reserved
+        © theFoodBuddy. {currentYear}, Bangladesh. All rights reserved
       </p>
     </div>
   );
