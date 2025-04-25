@@ -112,7 +112,20 @@ const NavBar = () => {
           </div>
         ) : (
           // Login/Register Links
-          <CgProfile size={25} />
+          <div className=" items-center gap-2 hidden lg:flex">
+            <NavLink
+              to="/login"
+              className="btn btn-sm  bg-[#023E8A] text-white"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/register"
+              className="btn btn-sm  bg-[#023E8A] text-white"
+            >
+              Register
+            </NavLink>
+          </div>
         )}
 
         {/* Theme Toggle */}
