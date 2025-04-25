@@ -35,9 +35,9 @@ const MyFoodRequest = () => {
       <div className="w-11/12 mx-auto mt-16 pb-6">
         <NavBar></NavBar>
       </div>
-      <h3 className="text-2xl font-semibold w-11/12 mx-auto mb-4">
+      {/* <h3 className="text-2xl font-semibold w-11/12 mx-auto mb-4">
         Your Food Requests
-      </h3>
+      </h3> */}
       <div className="w-11/12 mx-auto">
         {showSkeleton ? (
           <SkeletonTheme
