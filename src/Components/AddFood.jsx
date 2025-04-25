@@ -111,7 +111,7 @@ const AddFood = () => {
 
             <div className="flex gap-5">
               {/* Pickup Location */}
-              {/* <div className="form-control mb-4 flex-1">
+              <div className="form-control mb-4 flex-1">
                 <label className="label">
                   <span className="label-text">Pickup Location</span>
                 </label>
@@ -122,7 +122,7 @@ const AddFood = () => {
                   className="input input-bordered w-full"
                   required
                 />
-              </div> */}
+              </div>
 
               {/* Expired Date/Time */}
               <div className="form-control mb-4 flex-1">
