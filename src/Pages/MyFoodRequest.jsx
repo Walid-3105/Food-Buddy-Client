@@ -15,7 +15,6 @@ const MyFoodRequest = () => {
     const timer = setTimeout(() => {
       setShowSkeleton(false);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -23,90 +22,80 @@ const MyFoodRequest = () => {
     axios
       .get(
         `https://assignment-11-server-beta-bay.vercel.app/requestFood?email=${user.email}`,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       )
       .then((data) => setMyFoods(data.data));
   }, [user.email]);
 
   return (
-    <div>
-      <div className="w-11/12 mx-auto mt-16 pb-6">
-        <NavBar></NavBar>
-      </div>
-      {/* <h3 className="text-2xl font-semibold w-11/12 mx-auto mb-4">
-        Your Food Requests
-      </h3> */}
-      <div className="w-11/12 mx-auto">
+    <div className="bg-gray-100 min-h-screen">
+      <NavBar />
+      <div className="w-11/12 mx-auto mt-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">
+          Your Food Requests
+        </h2>
+
         {showSkeleton ? (
           <SkeletonTheme
             height="30px"
-            baseColor="#4183da"
-            highlightColor="#023E8A"
+            baseColor="#cbd5e1"
+            highlightColor="#f1f5f9"
             duration={3}
           >
-            <Skeleton count={7}></Skeleton>
+            <Skeleton count={7} />
           </SkeletonTheme>
         ) : (
-          <div className="min-h-screen mt-10">
+          <div className="bg-white shadow-md rounded-lg p-6">
             {myFoods.length > 0 ? (
               <div className="overflow-x-auto">
-                <table className="table border">
-                  {/* head */}
-                  <thead>
-                    <tr className="text-gray-500">
-                      <th></th>
-                      <th>Food</th>
-                      <th>Donator Name</th>
-                      <th>Request Date</th>
-                      <th>Expire Date</th>
+                <table className="min-w-full table-auto text-left">
+                  <thead className="bg-gray-200 text-gray-700 uppercase text-sm tracking-wider">
+                    <tr>
+                      <th className="px-4 py-3">#</th>
+                      <th className="px-4 py-3">Food</th>
+                      <th className="px-4 py-3">Donator</th>
+                      <th className="px-4 py-3">Request Date</th>
+                      <th className="px-4 py-3">Expire Date</th>
                     </tr>
                   </thead>
-                  {myFoods &&
-                    myFoods.map((food, index) => (
-                      <tbody key={index}>
-                        {/* row 1 */}
-                        <tr>
-                          <th>{index + 1}</th>
-                          <td>
-                            <div className="flex items-center gap-3">
-                              <div className="avatar">
-                                <div className="mask mask-squircle h-12 w-12">
-                                  <img
-                                    src={food.foodImage}
-                                    alt="Avatar Tailwind CSS Component"
-                                  />
-                                </div>
-                              </div>
-                              <div>
-                                <div className="font-bold">{food.foodName}</div>
-                                <div className="text-sm opacity-50">
-                                  {food.pickupLocation}
-                                </div>
-                              </div>
+                  <tbody className="divide-y divide-gray-200">
+                    {myFoods.map((food, index) => (
+                      <tr key={index} className="hover:bg-gray-100 transition">
+                        <td className="px-4 py-4">{index + 1}</td>
+                        <td className="px-4 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 rounded overflow-hidden">
+                              <img
+                                src={food.foodImage}
+                                alt={food.foodName}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
-                          </td>
-                          <td>{food.donatorName}</td>
-                          <td>{food.requestDate}</td>
-
-                          <td>{food.expiredDate}</td>
-                        </tr>
-                      </tbody>
+                            <div>
+                              <p className="font-semibold">{food.foodName}</p>
+                              <p className="text-sm text-gray-500">
+                                {food.pickupLocation}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4">{food.donatorName}</td>
+                        <td className="px-4 py-4">{food.requestDate}</td>
+                        <td className="px-4 py-4">{food.expiredDate}</td>
+                      </tr>
                     ))}
+                  </tbody>
                 </table>
               </div>
             ) : (
-              <p className="text-2xl md:text-3xl lg:text-3xl font-bold text-center items-center">
-                No Request Food Added
+              <p className="text-xl md:text-2xl text-center text-gray-600 font-medium py-12">
+                You haven’t requested any food yet.
               </p>
             )}
           </div>
         )}
       </div>
-      <div>
-        <Footer></Footer>
-      </div>
+      <Footer />
     </div>
   );
 };
