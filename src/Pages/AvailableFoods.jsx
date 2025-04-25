@@ -5,6 +5,7 @@ import AFoods from "./Afoods";
 import Footer from "../Shared/Footer";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import banner from "../../src/assets/available-foods.webp";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -47,6 +48,11 @@ const AvailableFoods = () => {
       <div className="w-11/12 mx-auto mt-16">
         <NavBar></NavBar>
       </div>
+      <div
+        className="h-96 w-full bg-cover bg-center "
+        style={{ backgroundImage: `url(${banner})` }}
+      ></div>
+
       <div className="w-11/12 mx-auto min-h-screen">
         <div className="lg:flex grid grid-cols-1  items-center justify-between">
           <div className="text-xl lg:text-2xl font-semibold">
